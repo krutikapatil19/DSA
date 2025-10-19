@@ -1,42 +1,31 @@
 public class SelectionSort {
-    // Function to perform Selection Sort on an array
-    public static void selectionSort(int[] arr) {
-        int n = arr.length;
-        
-        // One by one move boundary of unsorted subarray
-        for (int i = 0; i < n - 1; i++) {
-            // Find the minimum element in unsorted array
-            int minIdx = i;
-            for (int j = i + 1; j < n; j++) {
-                if (arr[j] < arr[minIdx]) {
-                    minIdx = j;
-                }
+    public static  void selectionSort(int[] arr){
+
+        // Outer loop 
+        for(int i = 0; i<arr.length-1; i++){
+            int smallest = i;                             // assume the current element is the smallest
+
+            // Inner loop - find the index of the smallest element in the remaining array
+            for(int j = i+1; j<arr.length; j++){   
+                if(arr[smallest] > arr[j]) {              // if a smaller element is found, update smallest
+                    smallest = j;
             }
-            
-            // Swap the found minimum element with the first element
-            int temp = arr[minIdx];
-            arr[minIdx] = arr[i];
+        }
+        
+            int temp = arr[smallest];                     // Swap the smallest found element with the element at index i
+            arr[smallest] = arr[i];
             arr[i] = temp;
         }
     }
-    
-    // Main method to test the Selection Sort
-    public static void main(String[] args) {
-        int[] arr = {64, 34, 25, 12, 22, 11, 90};
-        System.out.println("Original array: ");
-        printArray(arr);
-        
+
+    public static void main(String[] args){
+        int[] arr = {20, 22, 12, 9, 90, 5};
         selectionSort(arr);
-        
-        System.out.println("Sorted array: ");
-        printArray(arr);
-    }
-    
-    // Utility function to print an array
-    public static void printArray(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+
+        for(int num : arr){
+            System.out.print(num + " ");
         }
-        System.out.println();
     }
 }
+
+//time complexity of selection sort - O(n^2)
